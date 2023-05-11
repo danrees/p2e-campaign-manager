@@ -8,7 +8,7 @@
 	import { AppShell } from '@skeletonlabs/skeleton';
 </script>
 
-<AppShell>
+<AppShell slotSidebarLeft="bg-surface-500/5 w-56 p-4">
 	<svelte:fragment slot="header">
 		<h1>P2E Campaign Manager</h1>
 	</svelte:fragment>
