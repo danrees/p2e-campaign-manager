@@ -1,0 +1,128 @@
+{
+	"success": true,
+	"build": {
+		"name": "Dr Petunia",
+		"class": "Alchemist",
+		"level": 1,
+		"ancestry": "Gnome",
+		"heritage": "Vivacious Gnome",
+		"background": "Charlatan",
+		"alignment": "N",
+		"gender": "Not set",
+		"age": "Not set",
+		"deity": "Not set",
+		"size": 1,
+		"keyability": "int",
+		"languages": ["Common", "Draconic", "Dwarven", "Gnomish", "Goblin", "Orcish", "Sylvan"],
+		"attributes": {
+			"ancestryhp": 8,
+			"classhp": 8,
+			"bonushp": 0,
+			"bonushpPerLevel": 0,
+			"speed": 25,
+			"speedBonus": 0
+		},
+		"abilities": { "str": 10, "dex": 12, "con": 14, "int": 18, "wis": 12, "cha": 12 },
+		"proficiencies": {
+			"classDC": 2,
+			"perception": 2,
+			"fortitude": 4,
+			"reflex": 4,
+			"will": 2,
+			"heavy": 0,
+			"medium": 2,
+			"light": 2,
+			"unarmored": 2,
+			"advanced": 0,
+			"martial": 0,
+			"simple": 2,
+			"unarmed": 2,
+			"castingArcane": 0,
+			"castingDivine": 0,
+			"castingOccult": 0,
+			"castingPrimal": 0,
+			"acrobatics": 0,
+			"arcana": 2,
+			"athletics": 0,
+			"crafting": 2,
+			"deception": 2,
+			"diplomacy": 2,
+			"intimidation": 0,
+			"medicine": 2,
+			"nature": 0,
+			"occultism": 0,
+			"performance": 2,
+			"religion": 2,
+			"society": 2,
+			"stealth": 0,
+			"survival": 0,
+			"thievery": 2
+		},
+		"feats": [
+			["Charming Liar", null],
+			["Alchemical Crafting", null],
+			["Vivacious Gnome", null, "Heritage", 1],
+			["Gnome Obsession", null, "Ancestry Feat", 1],
+			["Alchemical Familiar", null, "Class Feat", 1]
+		],
+		"specials": [
+			"Formula Book",
+			"Mutagenic Flashback",
+			"Mutagenist",
+			"Alchemy",
+			"Advanced Alchemy",
+			"Low-Light Vision",
+			"Infused Reagents",
+			"Quick Alchemy",
+			"Vivacious Gnome"
+		],
+		"lores": [
+			["Underworld", 2],
+			["Alchemy", 2]
+		],
+		"equipment": [],
+		"specificProficiencies": { "trained": [], "expert": [], "master": [], "legendary": [] },
+		"weapons": [
+			{
+				"name": "Dagger",
+				"qty": 1,
+				"prof": "simple",
+				"die": "d4",
+				"pot": 0,
+				"str": "",
+				"mat": null,
+				"display": "Dagger",
+				"runes": []
+			},
+			{
+				"name": "Hand Crossbow",
+				"qty": 1,
+				"prof": "simple",
+				"die": "d6",
+				"pot": 0,
+				"str": "",
+				"mat": null,
+				"display": "Hand Crossbow",
+				"runes": []
+			}
+		],
+		"money": { "pp": 0, "gp": 15, "sp": 0, "cp": 0 },
+		"armor": [],
+		"spellCasters": [],
+		"formula": [
+			{
+				"type": "Alchemist",
+				"known": [
+					"Acid Flask (Lesser)",
+					"Ghost Charge (Lesser)",
+					"Silvertongue Mutagen (Lesser)",
+					"Elixir of Life (Minor)",
+					"Thunderstone (Lesser)",
+					"Bestial Mutagen (Lesser)"
+				]
+			}
+		],
+		"pets": [{ "type": "Familiar", "name": "Familiar", "specific": null, "abilities": [] }],
+		"acTotal": { "acProfBonus": 3, "acAbilityBonus": 1, "acItemBonus": 0, "acTotal": 14 }
+	}
+}

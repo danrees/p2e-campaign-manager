@@ -1,0 +1,121 @@
+{
+	"success": true,
+	"build": {
+		"name": "Simon",
+		"class": "Rogue",
+		"level": 1,
+		"ancestry": "Human",
+		"heritage": "Skilled Heritage",
+		"background": "Royalty",
+		"alignment": "N",
+		"gender": "Not set",
+		"age": "Not set",
+		"deity": "Not set",
+		"size": 2,
+		"keyability": "str",
+		"languages": ["Common"],
+		"attributes": {
+			"ancestryhp": 8,
+			"classhp": 8,
+			"bonushp": 0,
+			"bonushpPerLevel": 0,
+			"speed": 25,
+			"speedBonus": 0
+		},
+		"abilities": { "str": 16, "dex": 16, "con": 12, "int": 14, "wis": 10, "cha": 10 },
+		"proficiencies": {
+			"classDC": 2,
+			"perception": 4,
+			"fortitude": 2,
+			"reflex": 4,
+			"will": 4,
+			"heavy": 0,
+			"medium": 2,
+			"light": 2,
+			"unarmored": 2,
+			"advanced": 0,
+			"martial": 0,
+			"simple": 2,
+			"unarmed": 2,
+			"castingArcane": 0,
+			"castingDivine": 0,
+			"castingOccult": 0,
+			"castingPrimal": 0,
+			"acrobatics": 2,
+			"arcana": 0,
+			"athletics": 2,
+			"crafting": 2,
+			"deception": 2,
+			"diplomacy": 2,
+			"intimidation": 2,
+			"medicine": 2,
+			"nature": 2,
+			"occultism": 0,
+			"performance": 2,
+			"religion": 0,
+			"society": 2,
+			"stealth": 2,
+			"survival": 2,
+			"thievery": 2
+		},
+		"feats": [
+			["Courtly Graces", null],
+			["Skilled Heritage", null, "Heritage", 1],
+			["Haughty Obstinacy", null, "Ancestry Feat", 1],
+			["Tumble Behind (Rogue)", null, "Class Feat", 1],
+			["Tame Animal", null, "Skill Feat", 1]
+		],
+		"specials": [
+			"Surprise Attack",
+			"Stealth",
+			"Ruffian Racket",
+			"Sneak Attack",
+			"Skilled Heritage"
+		],
+		"lores": [],
+		"equipment": [],
+		"specificProficiencies": { "trained": [], "expert": [], "master": [], "legendary": [] },
+		"weapons": [
+			{
+				"name": "Dagger",
+				"qty": 1,
+				"prof": "simple",
+				"die": "d4",
+				"pot": 0,
+				"str": "",
+				"mat": null,
+				"display": "Dagger",
+				"runes": []
+			},
+			{
+				"name": "Sling",
+				"qty": 1,
+				"prof": "simple",
+				"die": "d6",
+				"pot": 0,
+				"str": "",
+				"mat": null,
+				"display": "Sling",
+				"runes": []
+			}
+		],
+		"money": { "pp": 0, "gp": 13, "sp": 0, "cp": 0 },
+		"armor": [
+			{
+				"name": "Leather Armor",
+				"qty": 1,
+				"prof": "light",
+				"pot": 0,
+				"res": "",
+				"mat": null,
+				"display": "Leather",
+				"worn": true,
+				"runes": []
+			}
+		],
+		"spellCasters": [],
+		"formula": [],
+		"pets": [],
+		"acTotal": { "acProfBonus": 3, "acAbilityBonus": 3, "acItemBonus": 1, "acTotal": 17 }
+	}
+}
