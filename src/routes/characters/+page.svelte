@@ -1,11 +1,20 @@
 <script lang="ts">
+	import { toastStore } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms/client';
 
 	export let data: PageData;
 
 	const { form, enhance } = superForm(data.uploadForm);
-	const { form: form2, enhance: enhance2, allErrors } = superForm(data.importForm);
+	const {
+		form: form2,
+		enhance: enhance2,
+		errors
+	} = superForm(data.importForm, {
+		onError({ result, message }) {
+			toastStore.trigger({ message: result.error.message });
+		}
+	});
 </script>
 
 <div class="py-5">
@@ -18,11 +27,6 @@
 	</form>
 </div>
 <div class="py-5">
-	<ul>
-		{#each $allErrors as err}
-			<li>{err.message} - {err.path}</li>
-		{/each}
-	</ul>
 	<form method="post" action="?/importCharacter" use:enhance2>
 		<label class="label">
 			<span>Pathbuilder JSON ID</span>

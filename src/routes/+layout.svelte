@@ -5,7 +5,7 @@
 	import '@skeletonlabs/skeleton/styles/all.css';
 	// Most of your app wide CSS should be put in this file
 	import '../app.postcss';
-	import { AppShell } from '@skeletonlabs/skeleton';
+	import { AppShell, Toast } from '@skeletonlabs/skeleton';
 </script>
 
 <AppShell slotSidebarLeft="bg-surface-500/5 w-56 p-4">
@@ -22,6 +22,7 @@
 		</nav>
 	</svelte:fragment>
 	<div class="px-5 py-5">
+		<Toast />
 		<slot />
 	</div>
 </AppShell>

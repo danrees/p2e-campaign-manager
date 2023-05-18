@@ -1,6 +1,8 @@
 export function config() {
 	return {
-		namespace: 'test',
-		db: 'campaign-planner'
+		namespace: 'campaign_planner',
+		database: 'pathfinder',
+		user: 'root',
+		pass: 'password'
 	};
 }

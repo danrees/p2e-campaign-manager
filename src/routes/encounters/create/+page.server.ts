@@ -1,13 +1,14 @@
-import type { Actions } from '@sveltejs/kit';
+import { fail, type Actions } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { getInstance } from '$lib/surreal';
 import { superValidate } from 'sveltekit-superforms/server';
 
 import { z } from 'zod';
-import type { Participant } from '$lib/tools';
+import { config } from '$lib/config';
+import type { Character } from '$lib/characters';
 
 const schema = z.object({
-	name: z.string(),
+	name: z.string().nonempty(),
 	participants: z
 		.object({
 			name: z.string(),
@@ -15,39 +16,42 @@ const schema = z.object({
 			id: z.string()
 		})
 		.array()
+		.nonempty()
 });
 
 export const load = (async () => {
-	const participants: Participant[] = [
-		{
-			name: 'Player 1',
-			hitPoints: 20,
-			id: '1',
-			acTotal: { acTotal: 15 },
-			initiative: 0,
-			condition: ''
-		},
-		{
-			name: 'Player 2',
-			hitPoints: 20,
-			id: '2',
-			acTotal: { acTotal: 15 },
-			initiative: 0,
-			condition: ''
-		}
-	];
-	const form = await superValidate({ name: 'test', participants: participants }, schema);
-	return { form };
+	const form = await superValidate(schema);
+	const db = await getInstance();
+	const { database, namespace, user, pass } = config();
+	await db.signin({ user, pass });
+	await db.use(namespace, database);
+
+	const characters: Character[] = await db.select('characters');
+	return { form, characters };
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
 	create: async ({ request }) => {
 		const form = await superValidate(request, schema);
+		if (!form.valid) {
+			return fail(400, { form });
+		}
 		console.log('POST', form.data);
-
-		// const db = await getInstance();
-		// await db.use('pathfinder', 'campaign-manager');
+		const { database, namespace, pass, user } = config();
+		const db = await getInstance();
+		await db.signin({ user, pass });
+		await db.use(namespace, database);
 		// await db.create(`encounter:${}`)
+		const resp: { name: string; id: string }[] = await db.create(`encounters`, {
+			name: form.data.name
+		});
+		console.log(resp);
+		for (const p of form.data.participants) {
+			await db.query(`RELATE ${p.id}->participant->${resp.at(0)?.id} CONTENT {
+				initiative: ${p.initiative},
+				conditions: [],
+			}`);
+		}
 		return { form };
 	}
 };
