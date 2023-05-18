@@ -41,6 +41,6 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"surrealdb.js": "^0.7.1"
+		"surrealdb.js": "^0.7.2"
 	}
 }

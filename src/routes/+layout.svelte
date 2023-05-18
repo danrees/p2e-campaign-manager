@@ -16,8 +16,12 @@
 		<nav class="list-nav">
 			<ul>
 				<li><a href="/">Home</a></li>
+				<li><a href="/encounters">Encounters</a></li>
+				<li><a href="/characters">Characters</a></li>
 			</ul>
 		</nav>
 	</svelte:fragment>
-	<slot />
+	<div class="px-5 py-5">
+		<slot />
+	</div>
 </AppShell>
