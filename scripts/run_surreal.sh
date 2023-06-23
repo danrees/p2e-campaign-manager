@@ -2,4 +2,4 @@
 
 MODE=${@:-memory}
 
-surreal start ${MODE}
+surreal start -u root -p password ${MODE}
