@@ -57,7 +57,7 @@ export const actions = {
 		const db = await getInstance();
 		await db.signin({ user: 'root', pass: 'password' });
 		await db.use('campaign_planner', 'pathfinder');
-		const resp = await db.create(`characters:${form.data.id}`, data.build);
+		const resp = await db.create(`characters`, data.build);
 		console.log(resp);
 		return { importForm: form };
 	}

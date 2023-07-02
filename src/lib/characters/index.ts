@@ -103,7 +103,7 @@ export type Lore = [string, number];
 export type Equipment = [string, number];
 
 export interface Character {
-	id?: string;
+	id: string;
 	name: string;
 	class: string;
 	level: number;
@@ -153,4 +153,23 @@ export interface SpellCaster {
 	focusPoints: number;
 	spells: Spell[];
 	perDay: number[];
+}
+
+export function abilityBonus(score: number): number {
+	return Math.floor((score - 10) / 2);
+}
+
+export function calcHP(character: Character): number {
+	const attr = character.attributes;
+	const aBonus = abilityBonus(character.abilities.con);
+	return (
+		(attr.classhp + attr.bonushpPerLevel + aBonus) * character.level +
+		attr.ancestryhp +
+		attr.bonushp
+	);
+}
+
+export function calcSpeed(ch: Character): number {
+	const attr = ch.attributes;
+	return attr.speedBonus + attr.speed;
 }

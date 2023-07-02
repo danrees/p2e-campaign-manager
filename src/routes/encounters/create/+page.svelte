@@ -2,17 +2,21 @@
 	import { toastStore } from '@skeletonlabs/skeleton';
 	import type { PageData } from './$types';
 	import { superForm } from 'sveltekit-superforms/client';
+	import { type Character, calcHP } from '$lib/characters';
 
 	export let data: PageData;
 	const { form, enhance, errors } = superForm(data.form, { dataType: 'json' });
 
 	$: characters = data.characters;
 
-	let toAdd: { id: string; name: string; initiative: number };
+	type FormCharacter = { name: string; id: string; initiative: number; currentHP: number };
+	type AddableCharacter = FormCharacter & Character;
+
+	let toAdd: Character;
 
 	const addParticipant = () => {
-		if (toAdd && !$form.participants.includes(toAdd)) {
-			const part = { ...toAdd, initiative: 0 };
+		if (toAdd && !$form.participants.includes(toAdd as AddableCharacter)) {
+			const part = { ...toAdd, initiative: 0, currentHP: calcHP(toAdd) };
 			$form.participants = [...$form.participants, part];
 		} else {
 			toastStore.trigger({ message: 'Character with id already a participant' });
@@ -36,7 +40,7 @@
 		</label>
 	</div>
 	{#each $form.participants as participant, i (participant.id)}
-		<div class="grid grid-cols-2">
+		<div class="grid grid-cols-3">
 			<div>
 				<label>
 					<span>Character Name</span>
@@ -47,6 +51,12 @@
 				<label>
 					<span>Initiative</span>
 					<input type="number" class="input" bind:value={$form.participants[i].initiative} />
+				</label>
+			</div>
+			<div>
+				<label>
+					<span>Current HP</span>
+					<input type="number" class="input" bind:value={$form.participants[i].currentHP} />
 				</label>
 			</div>
 		</div>

@@ -13,12 +13,20 @@ export const load = (async ({ params }) => {
 
 	//const encounter = await db.select(`encounters:${encounter_id}`);
 
-	const encounter = await db.query(
-		`select *, (select <-participant, <-participant<-characters ) as participants from encounters:${encounter_id} fetch participants`,
-		{ id: encounter_id }
+	const encounter = await db.query<Encounter[]>(
+		`select *, 
+    (select 
+        conditions,
+        initiative,
+        in as character
+      from participant where out = $parent.id fetch character) as participants 
+    from type::thing("encounters", $encounter_id)`,
+		{ encounter_id: encounter_id }
 	);
 
+	console.log(encounter[0]?.result[0]);
+
 	return {
-		encounter
+		encounter: encounter[0]?.result[0]
 	};
 }) satisfies PageServerLoad;

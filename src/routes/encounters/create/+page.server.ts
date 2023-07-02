@@ -13,7 +13,8 @@ const schema = z.object({
 		.object({
 			name: z.string(),
 			initiative: z.number(),
-			id: z.string()
+			id: z.string(),
+			currentHP: z.number()
 		})
 		.array()
 		.nonempty()
@@ -47,9 +48,10 @@ export const actions: Actions = {
 		});
 		console.log(resp);
 		for (const p of form.data.participants) {
-			await db.query(`RELATE ${p.id}->participant->${resp.at(0)?.id} CONTENT {
+			await db.query(`RELATE ${resp.at(0)?.id}->participant->${p.id} CONTENT {
 				initiative: ${p.initiative},
 				conditions: [],
+        currentHP: ${p.currentHP},
 			}`);
 		}
 		return { form };
