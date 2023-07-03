@@ -1,5 +1,5 @@
 import { config } from '$lib/config';
-import type { Encounter } from '$lib/encounters';
+import type { Encounter, Participant } from '$lib/encounters';
 import { getInstance } from '$lib/surreal';
 import type { PageServerLoad } from './$types';
 
@@ -13,7 +13,7 @@ export const load = (async ({ params }) => {
 
 	//const encounter = await db.select(`encounters:${encounter_id}`);
 
-	const encounter = await db.query<Encounter[]>(
+	const encounter = await db.query<[Encounter[]]>(
 		`select *, 
     (select 
         conditions,
@@ -24,9 +24,9 @@ export const load = (async ({ params }) => {
 		{ encounter_id: encounter_id }
 	);
 
-	console.log(encounter[0]?.result[0]);
+	console.log(encounter[0]?.result?.at(0));
 
 	return {
-		encounter: encounter[0]?.result[0]
+		encounter: encounter[0]?.result?.at(0)
 	};
 }) satisfies PageServerLoad;

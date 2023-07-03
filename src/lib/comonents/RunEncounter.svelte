@@ -1,13 +1,12 @@
 <script lang="ts">
-	import type { Attributes } from '$lib/characters';
+	import { calcHP, type Attributes } from '$lib/characters';
 	import { getTracker } from '$lib/stores/encounter';
+	import Encounter from './Encounter.svelte';
 
 	export let encounterID: string;
-	const calcHP = (attr: Attributes) => {
-		return attr.bonushp + attr.classhp + attr.ancestryhp + attr.bonushpPerLevel;
-	};
 
 	const encounter = getTracker(encounterID);
+	$: console.log($encounter);
 </script>
 
 <div class="table-container">
@@ -23,7 +22,7 @@
 				{#each $encounter.participants as participant}
 					<tr>
 						<td>{participant.character.name}</td>
-						<td>/{calcHP(participant.character.attributes)}</td>
+						<td>{participant.currentHP}/{calcHP(participant.character)}</td>
 						<td>{participant.initiative}</td>
 						<td>{participant.conditions}</td>
 					</tr>

@@ -19,7 +19,7 @@
 
 	<ul>
 		{#each encounters as enc}
-			<li><a href={`/encounters/${splitID(enc.id)}`}>{enc.name}</a></li>
+			<li><a href={`/encounters/${splitID(enc.id)}/run`}>{enc.name}</a></li>
 		{/each}
 	</ul>
 </div>

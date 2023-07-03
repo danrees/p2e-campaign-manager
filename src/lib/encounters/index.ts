@@ -1,13 +1,15 @@
 import type { Character } from '$lib/characters';
 
-export interface Participant {
+export type Participant = {
+	id: string;
 	character: Character;
 	initiative: number;
 	currentHP: number;
 	conditions: string[];
-}
-export interface Encounter {
+	remove: boolean;
+};
+export type Encounter = {
 	name: string;
 	id: string;
 	participants: Participant[];
-}
+};

@@ -102,7 +102,7 @@ export type Feat = [string, unknown] | [string, unknown, string, number];
 export type Lore = [string, number];
 export type Equipment = [string, number];
 
-export interface Character {
+export type Character = {
 	id: string;
 	name: string;
 	class: string;
@@ -132,7 +132,7 @@ export interface Character {
 	formula: string[];
 	pets: string[];
 	acTotal: AcTotal;
-}
+};
 
 export interface Build {
 	success: boolean;
