@@ -1,8 +1,10 @@
-import type { Character } from '$lib/characters';
+export interface Details {
+	name: string;
+}
 
 export type Participant = {
 	id: string;
-	character: Character;
+	details: Details;
 	initiative: number;
 	currentHP: number;
 	conditions: string[];

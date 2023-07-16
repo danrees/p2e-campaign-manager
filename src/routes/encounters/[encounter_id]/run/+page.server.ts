@@ -1,6 +1,7 @@
 import { config } from '$lib/config';
-import type { Encounter, Participant } from '$lib/encounters';
+import type { Encounter } from '$lib/encounters';
 import { getInstance } from '$lib/surreal';
+import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 
 export const load = (async ({ params }) => {
@@ -13,7 +14,7 @@ export const load = (async ({ params }) => {
 
 	//const encounter = await db.select(`encounters:${encounter_id}`);
 
-	const encounter = await db.query<[Encounter[]]>(
+	const encounterResult = await db.query<[Encounter[]]>(
 		`select *, 
     (select 
         conditions,
@@ -24,9 +25,12 @@ export const load = (async ({ params }) => {
 		{ encounter_id: encounter_id }
 	);
 
-	console.log(encounter[0]?.result?.at(0));
-
+	console.log(encounterResult[0]?.result?.at(0));
+	const encounter = encounterResult[0]?.result?.at(0);
+	if (!encounter) {
+		throw error(404, 'could not find the requested encounter');
+	}
 	return {
-		encounter: encounter[0]?.result?.at(0)
+		encounter
 	};
 }) satisfies PageServerLoad;

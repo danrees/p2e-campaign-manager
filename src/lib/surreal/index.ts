@@ -13,4 +13,17 @@ async function getInstance() {
 	return s;
 }
 
-export { getInstance };
+async function prepareInstance(config: {
+	database: string;
+	namespace: string;
+	user: string;
+	pass: string;
+}) {
+	const db = await getInstance();
+	const { database, namespace, user, pass } = config;
+	await db.signin({ user, pass });
+	await db.use(namespace, database);
+	return db;
+}
+
+export { getInstance, prepareInstance };
